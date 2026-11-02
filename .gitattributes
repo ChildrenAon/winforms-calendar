@@ -1,0 +1,8 @@
+# 줄바꿈을 통일해서 윈도우/에디터 차이로 생기는 불필요한 변경을 막는다.
+* text=auto
+
+*.sln     text eol=crlf
+*.csproj  text eol=crlf
+*.cs      text eol=crlf
+*.resx    text eol=crlf
+*.config  text eol=crlf
