@@ -45,6 +45,8 @@ winforms-calendar/
 
 각 파일 맨 위 주석에 하는 일, 열리는 곳, 참고한 수업 내용, 담당이 적혀 있습니다. **처음 참여하면 [docs/작업가이드.md](docs/작업가이드.md)부터 읽어 주세요.**
 
+`Forms/`, `Models/`, `Data/` 폴더에는 각각 README가 있어서 폴더 안 파일이 무엇인지 설명합니다. 창(폼) 하나는 파일 3개가 한 세트이고, **직접 고치는 파일은 `XxxForm.cs`뿐**입니다. `.Designer.cs`와 `.resx`는 Visual Studio가 자동으로 관리하므로 건드리지 않습니다. ([Forms/README.md](WinFormsCalendar/Forms/README.md) 참고)
+
 ## 만들 기능
 
 [docs/기능명세.md](docs/기능명세.md)를 참고하세요.
