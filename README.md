@@ -24,15 +24,26 @@ winforms-calendar/
 ├─ README.md
 ├─ WinFormsCalendar.sln
 ├─ docs/
-│   ├─ 기능명세.md     기능 목록, 담당, 진행 상태
-│   ├─ 설계.md         화면·데이터·저장 방식 (초안)
-│   └─ 발표분량.md     파일별 설명 담당
+│   ├─ 작업가이드.md     어떤 기능을 어떤 파일에서 작업하는지 (먼저 읽기)
+│   ├─ 기능명세.md       기능 목록, 담당, 진행 상태
+│   ├─ 설계.md           화면·데이터·저장 방식 (초안)
+│   └─ 발표분량.md       파일별 설명 담당
 └─ WinFormsCalendar/
-    ├─ Program.cs      프로그램 시작점
-    └─ MainForm.cs     메인 화면 (달력)
+    ├─ Program.cs               프로그램 시작점
+    ├─ MainForm.cs              메인 화면 (달력)
+    ├─ Forms/                   창(폼) 하나 = 파일 하나
+    │   ├─ ScheduleForm.cs      일정 등록·수정
+    │   ├─ SearchForm.cs        키워드 검색
+    │   ├─ TimeCapsuleForm.cs   타임캡슐 메시지
+    │   ├─ GrassForm.cs         잔디 기록
+    │   └─ MiniWidgetForm.cs    미니 위젯 모드
+    ├─ Models/
+    │   └─ Schedule.cs          일정 데이터
+    └─ Data/
+        └─ DataStore.cs         파일 저장·불러오기
 ```
 
-기능이 추가될 때마다 폼·클래스 파일이 `WinFormsCalendar/` 아래에 하나씩 늘어납니다.
+각 파일 맨 위 주석에 하는 일, 열리는 곳, 참고한 수업 내용, 담당이 적혀 있습니다. **처음 참여하면 [docs/작업가이드.md](docs/작업가이드.md)부터 읽어 주세요.**
 
 ## 만들 기능
 
@@ -44,4 +55,5 @@ winforms-calendar/
 - 새 기능은 `feature/기능이름` 브랜치에서 작업하고, 끝나면 Pull Request를 올립니다. `main`은 항상 실행되는 상태로 둡니다.
 - 수업 실습에서 다룬 컨트롤과 문법 위주로 작성하고, **한글 주석**을 충분히 답니다. 발표에서 코드를 설명해야 하기 때문입니다.
 - 컨트롤 이름은 `btnAdd`, `lblDate`처럼 역할이 보이게 짓습니다.
+- 네임스페이스는 폴더와 상관없이 항상 `WinFormsCalendar`로 통일합니다.
 - 일정 등 개인 데이터는 `data/` 폴더에 저장되며 Git에 올라가지 않습니다.
