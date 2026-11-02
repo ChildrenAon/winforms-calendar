@@ -8,7 +8,7 @@ namespace WinFormsCalendar
     //             기록한 시간이 길수록 달력 칸의 배경색이 진해진다.
     //             (칸 색을 계산해서 칠하는 부분은 MainForm에서 한다)
     // 열리는 곳 : MainForm의 [잔디] 버튼
-    // 참고 수업 : WEEK09_04(NumericUpDown), WEEK04_01(Color.FromArgb로 색 만들기)
+    // 참고 수업 : 9주차 NumericUpDown, 4주차 Color.FromArgb로 색 만들기
     // 담당      : (미정)
     public partial class GrassForm : Form
     {
