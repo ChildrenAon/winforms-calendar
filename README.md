@@ -47,8 +47,11 @@ winforms-calendar/
     │   ├─ TimeCapsuleForm.cs   타임캡슐 메시지
     │   ├─ GrassForm.cs         잔디 기록
     │   └─ MiniWidgetForm.cs    미니 위젯 모드
-    ├─ Models/
-    │   └─ Schedule.cs          일정 데이터
+    ├─ Models/                  데이터 모양
+    │   ├─ Schedule.cs          일정
+    │   ├─ Category.cs          카테고리(이름·색)
+    │   ├─ Capsule.cs           타임캡슐 메시지
+    │   └─ GrassRecord.cs       잔디 기록
     └─ Data/
         └─ DataStore.cs         파일 저장·불러오기
 ```
@@ -66,6 +69,6 @@ winforms-calendar/
 - 기능 하나는 파일(폼) 하나로 나눕니다. 같은 파일을 둘이 동시에 고치지 않기 위해서입니다.
 - 새 기능은 기능별 브랜치(작업용 사본)에서 작업하고, 끝나면 Pull Request로 합칩니다. 도구는 각자 편한 것을 씁니다.
 - 수업 실습에서 다룬 컨트롤과 문법 위주로 작성하고, **한글 주석**을 충분히 답니다. 발표에서 코드를 설명해야 하기 때문입니다.
-- 컨트롤 이름은 `btnAdd`, `lblDate`처럼 역할이 보이게 짓습니다.
+- **이름은 수업 실습 방식**을 따릅니다. 버튼은 `bt_Add`처럼 `bt_`로 시작하고(수업의 `bt_FileOpen_Click`), 클래스 안의 변수는 `m_listSchedules`처럼 `m_`로 시작하고(수업의 `m_strInfo`), 다른 창을 만들어 쓰는 변수는 `_ScheduleForm`처럼 `_`로 시작합니다(수업의 `_Form2`). 버튼이 아닌 컨트롤은 같은 모양으로 넓혀 `tb_Title`(TextBox), `lb_Month`(Label), `lv_Schedule`(ListView), `ls_Dday`(ListBox), `cb_Category`(ComboBox), `nu_Hour`(NumericUpDown), `ck_Dday`(CheckBox), `pn_`(Panel)처럼 짓습니다.
 - 네임스페이스는 폴더와 상관없이 항상 `WinFormsCalendar`로 통일합니다.
 - 일정 등 개인 데이터는 실행 파일 옆 `data/` 폴더에 저장되며 Git에 올라가지 않습니다.
