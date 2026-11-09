@@ -5,7 +5,8 @@
     // 저장 형식 : 한 줄에 한 항목, '|'로 구분, 맨 앞 글자로 종류를 구분한다. (docs/설계.md 참고)
     // 저장 위치 : 실행 폴더의 data/ (Git에는 올라가지 않는다)
     // 참고 수업 : 6주차 File.ReadAllText / WriteAllText, try-catch
-    // 담당      : (미정)
+    // 구분      : 확장 (설계 문서의 구현 순서 참고)
+    // 담당      : ChildrenAon
     public static class DataStore
     {
     }

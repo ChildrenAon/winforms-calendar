@@ -8,7 +8,8 @@ namespace WinFormsCalendar
     // 열리는 곳 : MainForm에서 [추가]/[수정] 버튼을 누르면 모달 폼으로 열린다.
     // 참고 수업 : 5주차 모달 폼·값 전달, 5주차 ListBox·ComboBox,
     //             6주차 파일·색 대화상자, 9주차 NumericUpDown
-    // 담당      : (미정)
+    // 구분      : 필수(등록·수정·삭제) · 추가(시간/분, 파일 첨부) · 확장(카테고리 색, D-day)
+    // 담당      : ChildrenAon
     public partial class ScheduleForm : Form
     {
         public ScheduleForm()

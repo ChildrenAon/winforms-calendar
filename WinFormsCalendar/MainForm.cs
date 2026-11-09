@@ -10,6 +10,7 @@ namespace WinFormsCalendar
     // 참고 수업 : 4주차 Location·BackColor·Color.FromArgb, 9주차 ListView
     //             달력 날짜 계산(DateTime)은 수업에 없으므로 발표 때 따로 설명한다.
     // 주의      : 여러 사람이 동시에 고치면 충돌이 나므로, 이 파일에 창을 여는 코드를 넣을 때는 미리 알린다.
+    // 구분      : 필수
     // 담당      : ChildrenAon
     public partial class MainForm : Form
     {
