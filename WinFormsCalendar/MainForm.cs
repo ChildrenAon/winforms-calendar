@@ -48,6 +48,7 @@ namespace WinFormsCalendar
         private Panel[] m_pnBorder = new Panel[CELL_COUNT];     // 칸 테두리 (선택하면 파란색)
         private Panel[] m_pnCell = new Panel[CELL_COUNT];       // 칸 바탕 (잔디 색을 칠하는 곳)
         private Label[] m_lbDay = new Label[CELL_COUNT];        // 날짜 숫자
+        private Panel[] m_pnDotBar = new Panel[CELL_COUNT];     // 일정 점을 담는 흰 띠 (잔디 색이 진한 칸에서도 점이 잘 보이게)
         private Panel[,] m_pnDot = new Panel[CELL_COUNT, DOT_MAX];  // 일정 점
         private Label[] m_lbMore = new Label[CELL_COUNT];       // 점이 넘칠 때 "+2" 표시
         private DateTime[] m_dtCell = new DateTime[CELL_COUNT]; // 각 칸이 가리키는 날짜
@@ -169,17 +170,28 @@ namespace WinFormsCalendar
                 m_lbDay[i].DoubleClick += new EventHandler(Cell_DoubleClick);
                 m_pnCell[i].Controls.Add(m_lbDay[i]);
 
-                // 일정 점 (최대 4개)
+                // 일정 점을 담는 흰 띠
+                m_pnDotBar[i] = new Panel();
+                m_pnDotBar[i].Location = new Point(4, CELL_H - 26);
+                m_pnDotBar[i].Size = new Size(CELL_W - 12, 16);
+                m_pnDotBar[i].BackColor = Color.White;
+                m_pnDotBar[i].Visible = false;
+                m_pnDotBar[i].Tag = i;
+                m_pnDotBar[i].Click += new EventHandler(Cell_Click);
+                m_pnDotBar[i].DoubleClick += new EventHandler(Cell_DoubleClick);
+                m_pnCell[i].Controls.Add(m_pnDotBar[i]);
+
+                // 일정 점 (최대 4개, 흰 띠 안에 놓는다)
                 for (int k = 0; k < DOT_MAX; k++)
                 {
                     m_pnDot[i, k] = new Panel();
                     m_pnDot[i, k].Size = new Size(9, 9);
-                    m_pnDot[i, k].Location = new Point(6 + k * 13, 58);
+                    m_pnDot[i, k].Location = new Point(4 + k * 13, 3);
                     m_pnDot[i, k].Visible = false;
                     m_pnDot[i, k].Tag = i;
                     m_pnDot[i, k].Click += new EventHandler(Cell_Click);
                     m_pnDot[i, k].DoubleClick += new EventHandler(Cell_DoubleClick);
-                    m_pnCell[i].Controls.Add(m_pnDot[i, k]);
+                    m_pnDotBar[i].Controls.Add(m_pnDot[i, k]);
                 }
 
                 // 점이 넘칠 때 "+2" 표시
@@ -187,13 +199,13 @@ namespace WinFormsCalendar
                 m_lbMore[i].AutoSize = true;
                 m_lbMore[i].Font = m_fontSmall;
                 m_lbMore[i].ForeColor = COLOR_OTHER_TEXT;
-                m_lbMore[i].BackColor = Color.Transparent;
-                m_lbMore[i].Location = new Point(60, 54);
+                m_lbMore[i].BackColor = Color.White;
+                m_lbMore[i].Location = new Point(56, 1);
                 m_lbMore[i].Visible = false;
                 m_lbMore[i].Tag = i;
                 m_lbMore[i].Click += new EventHandler(Cell_Click);
                 m_lbMore[i].DoubleClick += new EventHandler(Cell_DoubleClick);
-                m_pnCell[i].Controls.Add(m_lbMore[i]);
+                m_pnDotBar[i].Controls.Add(m_lbMore[i]);
             }
         }
 
@@ -248,7 +260,7 @@ namespace WinFormsCalendar
         }
 
         // 그날 잔디 기록의 활동 시간(분)을 모두 더한다
-        private int GetGrassMinutes(DateTime dt)
+        public int GetGrassMinutes(DateTime dt)
         {
             int nSum = 0;
             foreach (GrassRecord g in m_listGrass)
@@ -259,7 +271,7 @@ namespace WinFormsCalendar
         }
 
         // 활동 시간을 단계(0~4)로 바꾼다. 0이면 칠하지 않는다.
-        private int GetGrassLevel(DateTime dt)
+        public int GetGrassLevel(DateTime dt)
         {
             int nMin = GetGrassMinutes(dt);
             if (nMin <= 0) return 0;
@@ -267,6 +279,13 @@ namespace WinFormsCalendar
             if (nMin < 120) return 2;
             if (nMin < 240) return 3;
             return 4;
+        }
+
+        // 잔디 단계(1~4)에 해당하는 색. 0이면 흰색. (잔디 창의 색 단계 안내에서도 같은 색을 쓴다)
+        public static Color GetGrassColor(int nLevel)
+        {
+            if (nLevel < 1 || nLevel > COLOR_GRASS.Length) return Color.White;
+            return COLOR_GRASS[nLevel - 1];
         }
 
         private Schedule GetSelectedSchedule()
@@ -350,10 +369,11 @@ namespace WinFormsCalendar
                     }
                 }
 
+                m_pnDotBar[i].Visible = (list.Count > 0);      // 일정이 있는 날만 흰 띠를 보인다
+
                 if (list.Count > DOT_MAX)
                 {
                     m_lbMore[i].Text = "+" + (list.Count - DOT_MAX);
-                    m_lbMore[i].ForeColor = (nLevel >= 3) ? Color.White : COLOR_OTHER_TEXT;
                     m_lbMore[i].Visible = true;
                 }
                 else
@@ -517,6 +537,13 @@ namespace WinFormsCalendar
         {
             GrassForm _GrassForm = new GrassForm(this);
             _GrassForm.ShowDialog();
+            RefreshAll();
+        }
+
+        private void bt_Mini_Click(object sender, EventArgs e)
+        {
+            MiniWidgetForm _MiniWidgetForm = new MiniWidgetForm(this);
+            _MiniWidgetForm.ShowDialog();
             RefreshAll();
         }
     }

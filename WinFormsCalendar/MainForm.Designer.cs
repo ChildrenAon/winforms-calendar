@@ -43,6 +43,7 @@
             this.bt_Search = new System.Windows.Forms.Button();
             this.bt_Capsule = new System.Windows.Forms.Button();
             this.bt_Grass = new System.Windows.Forms.Button();
+            this.bt_Mini = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // bt_Prev
@@ -206,12 +207,23 @@
             this.bt_Grass.Text = "잔디 기록";
             this.bt_Grass.UseVisualStyleBackColor = true;
             this.bt_Grass.Click += new System.EventHandler(this.bt_Grass_Click);
+            // 
+            // bt_Mini
+            // 
+            this.bt_Mini.Location = new System.Drawing.Point(380, 584);
+            this.bt_Mini.Name = "bt_Mini";
+            this.bt_Mini.Size = new System.Drawing.Size(110, 34);
+            this.bt_Mini.TabIndex = 14;
+            this.bt_Mini.Text = "미니 모드";
+            this.bt_Mini.UseVisualStyleBackColor = true;
+            this.bt_Mini.Click += new System.EventHandler(this.bt_Mini_Click);
             //
             // MainForm
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 640);
+            this.Controls.Add(this.bt_Mini);
             this.Controls.Add(this.bt_Grass);
             this.Controls.Add(this.bt_Capsule);
             this.Controls.Add(this.bt_Search);
@@ -255,5 +267,6 @@
         private System.Windows.Forms.Button bt_Search;
         private System.Windows.Forms.Button bt_Capsule;
         private System.Windows.Forms.Button bt_Grass;
+        private System.Windows.Forms.Button bt_Mini;
     }
 }
