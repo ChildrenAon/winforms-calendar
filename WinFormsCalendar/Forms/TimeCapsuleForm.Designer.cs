@@ -30,9 +30,9 @@
             this.tb_Message = new System.Windows.Forms.TextBox();
             this.bt_Add = new System.Windows.Forms.Button();
             this.lv_Capsule = new System.Windows.Forms.ListView();
-            this.날짜 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.상태 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.메시지 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ch_Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ch_State = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ch_Message = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bt_Delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -65,9 +65,9 @@
             // lv_Capsule
             // 
             this.lv_Capsule.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.날짜,
-            this.상태,
-            this.메시지});
+            this.ch_Date,
+            this.ch_State,
+            this.ch_Message});
             this.lv_Capsule.FullRowSelect = true;
             this.lv_Capsule.HideSelection = false;
             this.lv_Capsule.Location = new System.Drawing.Point(30, 145);
@@ -78,20 +78,20 @@
             this.lv_Capsule.View = System.Windows.Forms.View.Details;
             this.lv_Capsule.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lv_Capsule_ColumnWidthChanging);
             // 
-            // 날짜
+            // ch_Date
             // 
-            this.날짜.Text = "날짜";
-            this.날짜.Width = 90;
+            this.ch_Date.Text = "날짜";
+            this.ch_Date.Width = 90;
             // 
-            // 상태
+            // ch_State
             // 
-            this.상태.Text = "상태";
-            this.상태.Width = 50;
+            this.ch_State.Text = "상태";
+            this.ch_State.Width = 50;
             // 
-            // 메시지
+            // ch_Message
             // 
-            this.메시지.Text = "메시지";
-            this.메시지.Width = 220;
+            this.ch_Message.Text = "메시지";
+            this.ch_Message.Width = 220;
             // 
             // bt_Delete
             // 
@@ -127,9 +127,9 @@
         private System.Windows.Forms.TextBox tb_Message;
         private System.Windows.Forms.Button bt_Add;
         private System.Windows.Forms.ListView lv_Capsule;
-        private System.Windows.Forms.ColumnHeader 날짜;
-        private System.Windows.Forms.ColumnHeader 상태;
-        private System.Windows.Forms.ColumnHeader 메시지;
+        private System.Windows.Forms.ColumnHeader ch_Date;
+        private System.Windows.Forms.ColumnHeader ch_State;
+        private System.Windows.Forms.ColumnHeader ch_Message;
         private System.Windows.Forms.Button bt_Delete;
     }
 }
