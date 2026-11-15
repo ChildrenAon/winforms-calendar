@@ -85,6 +85,8 @@ namespace WinFormsCalendar
             m_dtSelected = DateTime.Today;
             m_dtMonth = new DateTime(m_dtSelected.Year, m_dtSelected.Month, 1);
             RefreshAll();
+
+            TimeCapsuleForm.StartWatching(this);
         }
 
         // ───────── 다른 창에서 쓰는 함수 ─────────
