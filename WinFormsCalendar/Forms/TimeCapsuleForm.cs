@@ -6,24 +6,23 @@ namespace WinFormsCalendar
 {
     // [타임캡슐 메시지 창]
     // 하는 일   : 열어볼 날짜와 메시지를 저장해 두고, 그 날짜가 되면 팝업으로 보여준다.
-    //             (일정 목록에는 표시하지 않는다)
+    //             (일정 목록에는 표시하지 않는다. 열리기 전에는 목록에서도 내용을 가린다)
     // 열리는 곳 : MainForm의 [타임캡슐] 버튼 (new TimeCapsuleForm(this) 로 모달 폼으로 연다),
-    //             그리고 날짜가 되었을 때 자동으로
-    // 참고 수업 : 9주차 Timer, 3주차 MessageBox, 6주차 파일 읽기·쓰기
+    //             그리고 날짜가 되었을 때 자동으로 (MainForm 생성자에서 StartWatching(this) 를 부른다)
+    // 참고 수업 : 6장 Timer·ListView, 4장 MessageBox·Form2(Form1)·이벤트 연결(+=), 2장 Tag
     //             수업에 없는 것: DateTimePicker(날짜 고르기), DateTime 날짜 계산(남은 날 구하기),
-    //                             코드로 Timer 만들기(new Timer, Tick += 로 이벤트 연결), static 변수·함수,
+    //                             코드로 Timer 만들기(new Timer), static 변수·함수,
+    //                             List<T>와 foreach(캡슐 목록 돌기), ColumnWidthChanging(열 너비 고정),
     //                             Application.OpenForms(열린 창 개수 확인),
     //                             DllImport·SendMessage(드롭다운 달력의 "오늘" 줄 숨기기)
-    // 힌트      : 메시지 목록은 m_Parent.Capsules (Capsule 클래스: Date, Message, IsOpened) 에 담는다.
-    //             새 메시지를 추가하거나 IsOpened 를 바꾼 뒤에는 m_Parent.SaveAll() 로 저장한다.
-    //             "날짜가 되면 자동으로" 띄우는 부분은 MainForm 이 시작할 때 부를 함수를 이 파일에 만들어 두면 된다.
     // 구분      : 추가
     // 담당      : WhelkMono
 
     public partial class TimeCapsuleForm : Form
     {
-        private MainForm m_Parent;      // 이 창을 연 메인 화면 (5주차 Form2(this) 방식)
+        private MainForm m_Parent;      // 이 창을 연 메인 화면
 
+        // 드롭다운 달력의 "오늘" 줄을 숨기려고 윈도우 기능을 직접 불러온다 (수업에 없는 것)
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam); // 수업에 없는 것
 
@@ -104,7 +103,7 @@ namespace WinFormsCalendar
             RefreshList();
         }
 
-        // ───────── 날짜가 되면 자동으로 띄우기 (9주차 Timer) ─────────
+        // ───────── 날짜가 되면 자동으로 띄우기 (6장 Timer) ─────────
         // MainForm 생성자 맨 끝에 TimeCapsuleForm.StartWatching(this); 한 줄을 넣는다.
 
         private static Timer s_Timer;
@@ -136,6 +135,7 @@ namespace WinFormsCalendar
             s_Timer.Start();
         }
 
+        // 실행 중에 열 너비를 바꾸지 못하게 막는다
         private void lv_Capsule_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             e.Cancel = true;                                         // 바꾸려는 것을 취소

@@ -160,6 +160,7 @@
             this.Name = "TimeCapsuleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "타임캡슐";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TimeCapsuleForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
