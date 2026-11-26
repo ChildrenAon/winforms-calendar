@@ -141,5 +141,12 @@ namespace WinFormsCalendar
             e.Cancel = true;                                         // 바꾸려는 것을 취소
             e.NewWidth = lv_Capsule.Columns[e.ColumnIndex].Width;    // 원래 너비 그대로 유지
         }
+
+        // Esc 키를 누르면 창을 닫는다
+        private void TimeCapsuleForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                this.Close();
+        }
     }
 }
