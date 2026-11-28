@@ -253,8 +253,8 @@ namespace WinFormsCalendar
             return String.Compare(a.Title, b.Title);
         }
 
-        // 날짜가 빠른 일정이 먼저 오게 비교한다 (D-day 목록용)
-        private static int CompareByDate(Schedule a, Schedule b)
+        // 날짜가 빠른 일정이 먼저 오게 비교한다 (D-day 목록과 검색 결과에서 쓴다)
+        public static int CompareByDate(Schedule a, Schedule b)
         {
             int n = a.Date.CompareTo(b.Date);
             if (n != 0) return n;

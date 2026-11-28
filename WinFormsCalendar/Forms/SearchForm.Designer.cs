@@ -103,7 +103,7 @@
             // ch_Title
             // 
             this.ch_Title.Text = "제목";
-            this.ch_Title.Width = 220;
+            this.ch_Title.Width = 195;
             // 
             // label2
             // 
