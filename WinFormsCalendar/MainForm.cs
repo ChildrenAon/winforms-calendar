@@ -233,8 +233,8 @@ namespace WinFormsCalendar
             return COLOR_CATEGORY_DEFAULT;
         }
 
-        // 그날의 일정을 시간 순서로 모아서 돌려준다
-        private List<Schedule> GetSchedules(DateTime dt)
+        // 그날의 일정을 시간 순서로 모아서 돌려준다 (미니 위젯에서도 쓴다)
+        public List<Schedule> GetSchedules(DateTime dt)
         {
             List<Schedule> list = new List<Schedule>();
             foreach (Schedule s in m_listSchedules)
