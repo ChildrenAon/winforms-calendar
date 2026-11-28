@@ -9,7 +9,7 @@ namespace WinFormsCalendar
     //             위젯이 떠 있는 동안 메인 화면은 숨기고, 위젯을 닫으면 메인 화면이 다시 나타난다.
     // 열리는 곳 : MainForm의 [미니 모드] 버튼 (new MiniWidgetForm(this) 로 모달 폼으로 연다)
     // 참고 수업 : 2장 Location·폼 이벤트(Load, FormClosed), 3장 ListBox, 5장 KeyDown
-    //             수업에 없는 것: TopMost(항상 위), FormBorderStyle(얇은 제목줄),
+    //             수업에 없는 것: TopMost(항상 위), FormBorderStyle(크기를 바꿀 수 없는 창 테두리),
     //                             Screen.PrimaryScreen.WorkingArea(화면 크기 구하기)
     // 구분      : 확장 (여유가 되면)
     // 담당      : WhelkMono
@@ -39,11 +39,11 @@ namespace WinFormsCalendar
 
             lb_Today.Text = MainForm.DateToText(DateTime.Today);
 
+            // 메인 화면의 GetSchedules 는 그날 일정을 시간 순서로 모아 돌려준다
             ls_Today.Items.Clear();
-            foreach (Schedule s in m_Parent.Schedules)
+            foreach (Schedule s in m_Parent.GetSchedules(DateTime.Today))
             {
-                if (s.Date.Date == DateTime.Today)
-                    ls_Today.Items.Add(s.TimeText + "   " + s.Title);
+                ls_Today.Items.Add(s.TimeText + "   " + s.Title);
             }
             if (ls_Today.Items.Count == 0)
                 ls_Today.Items.Add("오늘 일정이 없습니다.");
